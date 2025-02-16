@@ -36,6 +36,8 @@ export default function RootLayout() {
             <NavThemeProvider value={NAV_THEME[colorScheme]}>
               <Stack screenOptions={SCREEN_OPTIONS}>
                 <Stack.Screen name="(drawer)" options={DRAWER_OPTIONS} />
+                <Stack.Screen name="index" options={{ headerShown: false }} />
+                <Stack.Screen name="launch" options={{ headerShown: false }} />
                 <Stack.Screen name="modal" options={MODAL_OPTIONS} />
               </Stack>
             </NavThemeProvider>
@@ -50,6 +52,7 @@ export default function RootLayout() {
 
 const SCREEN_OPTIONS = {
   animation: 'ios_from_right', // for android
+  headerShadowVisible: false,
 } as const;
 
 const DRAWER_OPTIONS = {

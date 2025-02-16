@@ -53,7 +53,7 @@
       --card-foreground: 255 255 255;
       --popover: 40 40 42;
       --popover-foreground: 255 255 255;
-      --primary: 3 133 255;
+      --primary: #8a4a65;
       --primary-foreground: 255 255 255;
       --secondary: 100 211 254;
       --secondary-foreground: 255 255 255;
@@ -89,3 +89,66 @@
     }
   }
 }
+
+.text {
+  font-size: 12px;
+  font-weight: 400;
+  color: #707070;
+  line-height:0;
+  letter-spacing:0;
+}
+
+.text-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #171D1E;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+}
+.text-btn {
+  font-size: 14px;
+  font-weight: 500;
+  /* color: #171D1E; */
+  line-height: 20px;
+  letter-spacing: 0.1px;
+}
+
+.text-ch {
+  font-size: 24px;
+  font-weight: 400;
+  color: #171D1E;
+  line-height: 22px;
+  letter-spacing: 0px;
+}
+.text-ct {
+  font-size: 22px;
+  font-weight: 700;
+  color: #171D1E;
+  line-height: 28px;
+  letter-spacing: 0px;
+}
+
+.text-cd {
+  font-size: 14px;
+  font-weight: 400;
+  color: #514347;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+}
+
+.text-big {
+  font-size: 45px;
+  font-weight: 700;
+  color: #171D1E;
+  line-height: 52px;
+  letter-spacing: 0px;
+}
+
+.text-st {
+  font-size: 16px;
+  font-weight: 400;
+  color: #242424;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+

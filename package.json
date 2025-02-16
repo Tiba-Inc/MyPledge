@@ -1,5 +1,5 @@
 {
-  "name": "MyPledge",
+  "name": "mypledge",
   "version": "1.0.0",
   "main": "expo-router/entry",
   "scripts": {
@@ -34,12 +34,15 @@
     "expo-constants": "~17.0.5",
     "expo-dev-client": "~5.0.4",
     "expo-dev-launcher": "^5.0.17",
+    "expo-device": "~7.0.2",
     "expo-linking": "~7.0.5",
     "expo-navigation-bar": "~4.0.8",
+    "expo-notifications": "~0.29.13",
     "expo-router": "~4.0.6",
     "expo-status-bar": "~2.0.1",
     "expo-store-review": "~8.0.1",
     "expo-system-ui": "~4.0.8",
+    "expo-updates": "~0.26.17",
     "expo-web-browser": "~14.0.2",
     "nativewind": "latest",
     "react": "18.3.1",
@@ -50,10 +53,13 @@
     "react-native-reanimated": "3.16.2",
     "react-native-safe-area-context": "4.12.0",
     "react-native-screens": "~4.4.0",
+    "react-native-svg": "^15.11.1",
     "react-native-uitextview": "^1.1.4",
     "react-native-web": "~0.19.10",
     "tailwind-merge": "^2.2.1",
-    "zustand": "^4.5.1"
+    "zustand": "^4.5.1",
+    "expo-image": "~2.0.5",
+    "expo-linear-gradient": "~14.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
