@@ -97,6 +97,13 @@
   line-height:0;
   letter-spacing:0;
 }
+.text-reg {
+  font-size: 12px;
+  font-weight: 400;
+  color: #514347;
+  line-height:16px;
+  letter-spacing:0.4px;
+}
 
 .text-title {
   font-size: 17px;
@@ -117,7 +124,7 @@
   font-size: 24px;
   font-weight: 400;
   color: #171D1E;
-  line-height: 22px;
+  line-height: 32px;
   letter-spacing: 0px;
 }
 .text-ct {

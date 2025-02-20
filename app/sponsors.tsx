@@ -24,7 +24,7 @@ interface SponsorItemProps {
 }
 
 // Reusable Sponsor Item Component
-const SponsorItem: React.FC<SponsorItemProps> = ({ Icon, name, onPress, showArrow = true }) => (
+const SponsorItem = ({ Icon, name, onPress, showArrow = true }: SponsorItemProps) => (
   <TouchableOpacity className="flex-row items-center justify-between px-4 py-3" onPress={onPress}>
     <View className="flex-row items-center gap-4">
       <View className="-ml-6">

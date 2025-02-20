@@ -30,9 +30,9 @@ const getAppName = () => {
 export default ({ config }) => ({
   expo: {
     name: getAppName(),
-    slug: 'MyPMyPledge',
+    slug: 'MyPledge',
     version: '1.0.0',
-    scheme: 'MyPMyPledge',
+    scheme: 'MyPledge',
     web: {
       bundler: 'metro',
       output: 'static',
