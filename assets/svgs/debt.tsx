@@ -1,0 +1,11 @@
+import * as React from 'react';
+import Svg, { Path, SvgProps } from 'react-native-svg';
+const Debt = (props: SvgProps) => (
+  <Svg width={24} height={24} viewBox="0 0 20 16" fill="none" {...props}>
+    <Path
+      d="M13 12H16C16.55 12 17 11.55 17 11V5C17 4.45 16.55 4 16 4H13C12.45 4 12 4.45 12 5V11C12 11.55 12.45 12 13 12ZM14 6H15V10H14V6ZM7 12H10C10.55 12 11 11.55 11 11V5C11 4.45 10.55 4 10 4H7C6.45 4 6 4.45 6 5V11C6 11.55 6.45 12 7 12ZM8 6H9V10H8V6ZM4 4C3.45 4 3 4.45 3 5V11C3 11.55 3.45 12 4 12C4.55 12 5 11.55 5 11V5C5 4.45 4.55 4 4 4ZM0 2V14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0H2C0.9 0 0 0.9 0 2ZM17 14H3C2.45 14 2 13.55 2 13V3C2 2.45 2.45 2 3 2H17C17.55 2 18 2.45 18 3V13C18 13.55 17.55 14 17 14Z"
+      fill="#514347"
+    />
+  </Svg>
+);
+export default Debt;

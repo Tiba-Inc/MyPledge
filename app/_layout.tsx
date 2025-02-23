@@ -35,10 +35,9 @@ export default function RootLayout() {
           <ActionSheetProvider>
             <NavThemeProvider value={NAV_THEME[colorScheme]}>
               <Stack screenOptions={SCREEN_OPTIONS}>
-                <Stack.Screen name="(drawer)" options={DRAWER_OPTIONS} />
                 <Stack.Screen name="index" options={{ headerShown: false }} />
+                <Stack.Screen name="(drawer)" options={DRAWER_OPTIONS} />
                 <Stack.Screen name="auth" options={{ headerShown: false }} />
-                <Stack.Screen name="home" options={{ headerShown: false }} />
                 <Stack.Screen name="launch" options={{ headerShown: false }} />
                 <Stack.Screen name="modal" options={MODAL_OPTIONS} />
               </Stack>

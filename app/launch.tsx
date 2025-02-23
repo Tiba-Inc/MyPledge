@@ -4,11 +4,10 @@ import Logo from '~/assets/svgs/logo';
 import { Button } from '~/components/Button';
 import { router, Stack } from 'expo-router';
 
-
 export default function Launch() {
   return (
     <View className="flex-1 justify-between">
-      <Stack.Screen options={{ animation: 'slide_from_bottom' }} />
+      <Stack.Screen options={{ animation: 'fade_from_bottom' }} />
       <View className="mt-72 items-center">
         <Logo width={250} height={250} />
         <Text className="text-title mb-6 mt-2">Welcome to Mypledge</Text>

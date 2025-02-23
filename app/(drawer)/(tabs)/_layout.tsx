@@ -1,4 +1,7 @@
 import { Tabs } from 'expo-router';
+import Goals from '~/assets/svgs/goals';
+import Home from '~/assets/svgs/home';
+import Plans from '~/assets/svgs/plans';
 
 import { TabBarIcon } from '~/components/TabBarIcon';
 
@@ -13,21 +16,21 @@ export default function TabLayout() {
         name="homeScreen"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <Home color={color} />,
         }}
       />
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Goals',
+          tabBarIcon: ({ color }) => <Goals color={color} />,
         }}
       />
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Saving plans',
+          tabBarIcon: ({ color }) => <Plans color={color} />,
         }}
       />
     </Tabs>
