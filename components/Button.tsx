@@ -23,7 +23,7 @@ export const Button = forwardRef<View, ButtonProps>(
         ref={ref}
         disabled={disabled || loading}
         className={[
-          'flex-row items-center justify-center rounded-[99px] px-6 py-4 shadow-lg', // Default styles
+          'flex-row items-center justify-center rounded-[99px] px-6 py-4', // Default styles
           disabled ? 'bg-[#1D1B201F] text-gray-500' : 'bg-[#8A4A65]', // Background color and state handling
           'active:opacity-25', // Active state effect
           className, // Allow parent styles

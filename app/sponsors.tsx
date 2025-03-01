@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, GestureResponderEvent } from 'react-native';
+import { View, Text, TouchableOpacity, GestureResponderEvent, ScrollView } from 'react-native';
 import { router, Stack } from 'expo-router';
 import Cancel from '~/assets/svgs/cancel';
 import RightArrow from '~/assets/svgs/rightArrow';
@@ -30,7 +30,8 @@ const SponsorItem = ({ Icon, name, onPress, showArrow = true }: SponsorItemProps
       <View className="-ml-6">
         <Icon />
       </View>
-      <Text className="text-st text-base">{name}</Text>
+      {/* Ensure text wraps naturally */}
+      <Text className="text-st max-w-[200px] flex-wrap text-base">{name}</Text>
     </View>
     {showArrow && <RightArrow />}
   </TouchableOpacity>
@@ -59,20 +60,21 @@ export default function Sponsors() {
         }}
       />
 
-      <View className="pl-4">
-        <Text className="text-st text-lg font-bold">Our partners</Text>
-        <SponsorItem Icon={BOU} name="Bank of Uganda" />
-
-        <Text className="text-st mt-8 text-lg font-bold">Our sponsors</Text>
-        <View className="">
-          <SponsorItem Icon={Citi} name="Citi Bank" />
-          <SponsorItem Icon={Absa} name="ABSA Bank" />
-          <SponsorItem Icon={UgaFode} name="UGAFODE" />
-          <SponsorItem Icon={DTB} name="Diamond Trust Bank" />
-          <SponsorItem Icon={UIA} name="Uganda Insurers Association" />
-          <SponsorItem Icon={DPF} name="Deposit Protection Fund" showArrow={false} />
+      <ScrollView className="" showsVerticalScrollIndicator={false}>
+        <View className="pl-4">
+          <Text className="text-st text-lg font-bold">Our partners</Text>
+          <SponsorItem Icon={BOU} name="Bank of Uganda" />
+          <Text className="text-st mt-8 text-lg font-bold">Our sponsors</Text>
+          <View className="flex-wrap">
+            <SponsorItem Icon={Citi} name="Citi Bank" />
+            <SponsorItem Icon={Absa} name="ABSA Bank" />
+            <SponsorItem Icon={UgaFode} name="UGAFODE" />
+            <SponsorItem Icon={DTB} name="Diamond Trust Bank" />
+            <SponsorItem Icon={UIA} name="Uganda Insurers Association" />
+            <SponsorItem Icon={DPF} name="Deposit Protection Fund of Uganda" />
+          </View>
         </View>
-      </View>
+      </ScrollView>
 
       <View className="mb-8 mt-auto">
         <Button onPress={handleDone} title="Done" className="w-full" />

@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import React, { useState } from 'react';
 import Slider from '~/components/Slider';
 import { Button } from '~/components/Button';
@@ -16,13 +16,16 @@ export default function Carousel() {
 
   const handleButtonPress = () => {
     if (currentIndex === CarouselData.length - 1) {
-      // If on the last slide, navigate to a new screen
-      router.push('./done'); // Replace '/new-screen' with the route of your target screen
+      router.push('./done'); // Navigate to the target screen on last slide
     } else {
-      // Otherwise, move to the next slide (if applicable)
       console.log('Next slide');
     }
   };
+
+  // Extracting current slide data
+  const currentSlide = CarouselData[currentIndex];
+  const currentHeading = currentSlide?.heading;
+  const buttonTitle = currentSlide?.buttonType || 'Next'; // Default to 'Next' if buttonType is missing
 
   return (
     <View className="mx-4 flex-1 justify-between">
@@ -31,31 +34,33 @@ export default function Carousel() {
         options={{
           headerTitle: '',
           headerLeft:
-            currentIndex === 4 // Check if we're on slide 4
+            currentIndex === 4
               ? () => (
-                  <View className="">
-                    <Cancel
-                      width={24}
-                      height={24}
-                      color={'#171D1E'}
-                      onPress={handleCancel} // Trigger cancel action
-                    />
+                  <View>
+                    <Cancel width={24} height={24} color={'#171D1E'} onPress={handleCancel} />
                   </View>
                 )
               : undefined, // Default back arrow for other slides
         }}
       />
+
+      {/* Heading */}
+      <View className="mt-4">
+        {currentHeading ? (
+          <Text className="mb-3 self-start pl-4 text-2xl font-bold">{currentHeading}</Text>
+        ) : (
+          <View className="h-10" /> // Placeholder to maintain layout
+        )}
+      </View>
+
       {/* Slider Component */}
       <View>
         <Slider itemList={CarouselData} onIndexChange={setCurrentIndex} />
       </View>
+
       {/* Dynamic Button */}
-      {CarouselData[currentIndex]?.buttonType && (
-        <Button
-          className="mb-8 mt-2"
-          title={currentIndex === CarouselData.length - 1 ? 'Continue' : 'Next'} // Show 'Finish' on the last slide
-          onPress={handleButtonPress} // Handle navigation or next slide
-        />
+      {currentSlide?.buttonType && (
+        <Button className="mb-8 mt-2" title={buttonTitle} onPress={handleButtonPress} />
       )}
     </View>
   );

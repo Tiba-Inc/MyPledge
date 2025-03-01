@@ -102,12 +102,13 @@ export default function Login() {
           title="Log in"
           onPress={handleSubmit(onSubmit)}
           disabled={!isValid}
+          textColor={isValid == true ? 'text-white' : 'text-green-400'}
         />
 
         {/* Forgot Password Button */}
         <Button
           className="mt-3 bg-transparent"
-          textColor="#171D1E"
+          textColor="#8A4A65"
           title="Forgot password"
           onPress={() => router.push('/auth/resetpwd')}
           // Uncomment and add functionality if needed
@@ -117,11 +118,12 @@ export default function Login() {
 
       {/* Create Account Section */}
       <View className="mb-10 items-center gap-3 border-t border-t-[#D8DADD] pt-4">
-        <Text>Or</Text>
+        <Text className="text-[#514347]">Or</Text>
         <Button
           onPress={() => router.push('/auth/register')}
-          className="w-full"
+          className="w-full bg-transparent"
           title="Create a new account"
+          textColor="#8A4A65"
         />
       </View>
     </View>

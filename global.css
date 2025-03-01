@@ -94,28 +94,28 @@
   font-size: 12px;
   font-weight: 400;
   color: #707070;
-  line-height:0;
-  letter-spacing:0;
+  line-height: 0;
+  letter-spacing: 0;
 }
 .text-reg {
   font-size: 12px;
   font-weight: 400;
   color: #514347;
-  line-height:16px;
-  letter-spacing:0.4px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
 }
 
 .text-title {
   font-size: 17px;
   font-weight: 700;
-  color: #171D1E;
+  color: #171d1e;
   line-height: 16px;
   letter-spacing: 0.4px;
 }
 .text-btn {
   font-size: 14px;
   font-weight: 500;
-  /* color: #171D1E; */
+  color: #231b00;
   line-height: 20px;
   letter-spacing: 0.1px;
 }
@@ -123,14 +123,14 @@
 .text-ch {
   font-size: 24px;
   font-weight: 400;
-  color: #171D1E;
+  color: #171d1e;
   line-height: 32px;
   letter-spacing: 0px;
 }
 .text-ct {
   font-size: 22px;
   font-weight: 700;
-  color: #171D1E;
+  color: #171d1e;
   line-height: 28px;
   letter-spacing: 0px;
 }
@@ -146,7 +146,7 @@
 .text-big {
   font-size: 45px;
   font-weight: 700;
-  color: #171D1E;
+  color: #171d1e;
   line-height: 52px;
   letter-spacing: 0px;
 }
@@ -157,6 +157,5 @@
   color: #242424;
   line-height: 24px;
   letter-spacing: 0.5px;
-  border-color: #C6C6C8;
+  border-color: #c6c6c8;
 }
-

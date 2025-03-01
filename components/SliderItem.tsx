@@ -14,29 +14,28 @@ type Props = {
   scrollX: SharedValue<number>;
 };
 
-const { width, height } = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 
 export default function SliderItem({ index, item, scrollX }: Props) {
   const rnAnimatedStyle = useAnimatedStyle(() => {
+    const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
+    const outputRange = [0.9, 1, 0.9];
+
+    // Ensure first item is fully centered on first render
+    const scale = scrollX.value === 0 && index === 0 ? 1 : interpolate(
+      scrollX.value,
+      inputRange,
+      outputRange,
+      Extrapolation.CLAMP
+    );
+
     return {
-      transform: [
-        {
-          scale: interpolate(
-            scrollX.value,
-            [index - 1, index, (index + 1) * width],
-            [0.9, 1, 0.9],
-            Extrapolation.CLAMP
-          ),
-        },
-      ],
+      transform: [{ scale }],
     };
   });
 
   return (
-    <Animated.View style={[rnAnimatedStyle]} className="w-screen items-center justify-center">
-      {/* Heading */}
-      <Text className="mb-3 self-start pl-4 text-2xl font-bold">{item.heading}</Text>
-
+    <Animated.View style={[rnAnimatedStyle, { width }]} className="items-center justify-center">
       {/* Image */}
       <View className="w-full items-center justify-center">{item.Image}</View>
 
