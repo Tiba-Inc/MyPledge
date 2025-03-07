@@ -87,7 +87,7 @@ const CustomDrawerContent = React.memo((props: any) => {
     <View className="flex-1 bg-gray-200">
       <DrawerContentScrollView {...props} scrollEnabled contentContainerStyle={{ paddingTop: top }}>
         {/* Close Button */}
-        <TouchableOpacity className="absolute right-5 top-5 mb-1">
+        <TouchableOpacity className="self-end mr-2">
           <Cancel color={'#514347'} />
         </TouchableOpacity>
 

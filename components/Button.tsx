@@ -24,7 +24,7 @@ export const Button = forwardRef<View, ButtonProps>(
         disabled={disabled || loading}
         className={[
           'flex-row items-center justify-center rounded-[99px] px-6 py-4', // Default styles
-          disabled ? 'bg-[#1D1B201F] text-gray-500' : 'bg-[#8A4A65]', // Background color and state handling
+          disabled ? 'bg-[#1D1B201F] text-green-500' : 'bg-[#8A4A65]', // Background color and state handling
           'active:opacity-25', // Active state effect
           className, // Allow parent styles
         ].join(' ')}
@@ -47,7 +47,7 @@ export const Button = forwardRef<View, ButtonProps>(
             style={{
               fontSize: 16,
               fontWeight: '600',
-              color: textColor || '#FFFFFF', // Default to white if no textColor is provided
+              color: disabled ? '#000000' : textColor || '#FFFFFF',
             }}>
             {title}
           </Text>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Animated, Easing, Modal, StyleSheet } from 'react-native';
 import { PieChart } from 'react-native-gifted-charts';
-import { Stack } from 'expo-router';
+import { router, Stack, useNavigation } from 'expo-router';
 import { BlurView } from 'expo-blur';
 import RightArrow from '~/assets/svgs/rightArrow';
 import Clock from '~/assets/svgs/clock';
@@ -30,9 +30,11 @@ const Legend: React.FC<LegendProps> = ({ title, subtitle, color }) => (
 
 const HomeScreen: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isSheetVisible, setIsSheetVisible] = useState(false); // Track sheet visibility
   const rotateValue = new Animated.Value(0);
   const [greeting, setGreeting] = useState('');
   const bottomSheetModalRef = useSheetRef();
+  const Navigation = useNavigation();
 
   // Function to determine greeting based on the time of day
   const getGreeting = () => {
@@ -83,6 +85,7 @@ const HomeScreen: React.FC = () => {
 
   // Define actions for each button
   const handleSetGoal = () => {
+    router.push('/home/setGoal');
     console.log('Set goal button pressed');
     // Add navigation or logic for setting a goal
   };
@@ -93,26 +96,43 @@ const HomeScreen: React.FC = () => {
   };
 
   const handleAddTransaction = () => {
-    bottomSheetModalRef.current?.present();
+    setIsSheetVisible(true); // Show the sheet
+    bottomSheetModalRef.current?.present(); // Present the sheet
     console.log('Add transaction button pressed');
-    // Add navigation or logic for adding a transaction
+  };
+
+  // Function to close both modal and sheet
+  const closeModalAndSheet = () => {
+    setIsExpanded(false); // Close the modal
+    setIsSheetVisible(false); // Hide the sheet
+    bottomSheetModalRef.current?.close(); // Close the sheet
   };
 
   return (
     <>
       <View className="flex-1 p-4">
-        <Stack.Screen options={{ headerShadowVisible: false }} />
-        
+        <Stack.Screen
+          options={{
+            headerShadowVisible: false,
+            header: () => (
+              <View>
+                <Text className="text-2xl font-bold text-black">{greeting}, User</Text>
+              </View>
+            ),
+          }}
+        />
         <Text className="text-2xl font-bold text-black">{greeting}, User</Text>
         <Text className="mt-5 text-lg font-bold text-black">Account</Text>
-        <View className="mt-6 flex-row items-center gap-5">
+        <TouchableOpacity
+          onPress={() => router.push('/home/account')}
+          className="mt-6 flex-row items-center gap-5">
           <PieChart donut innerRadius={32} radius={60} data={pieData} />
           <View className="gap-2">
             {legendData.map((item, index) => (
               <Legend key={index} title={item.title} subtitle={item.subtitle} color={item.color} />
             ))}
           </View>
-        </View>
+        </TouchableOpacity>
         <TouchableOpacity className="mt-5 flex-row items-center justify-between">
           <View>
             <Text className="text-base text-black">Summary</Text>
@@ -151,9 +171,7 @@ const HomeScreen: React.FC = () => {
       {/* Modal for Expanded FAB */}
       <Modal transparent visible={isExpanded} onRequestClose={toggleExpand}>
         {/* Blur Overlay */}
-        <TouchableOpacity
-          activeOpacity={1}
-          onPress={toggleExpand}></TouchableOpacity>
+        <BlurView intensity={50} style={StyleSheet.absoluteFill} />
 
         {/* Expanded Buttons */}
         <View className="absolute bottom-40 right-5 gap-3">
@@ -176,17 +194,28 @@ const HomeScreen: React.FC = () => {
         </View>
       </Modal>
 
-      <Sheet ref={bottomSheetModalRef} snapPoints={[200]}>
+      {/* Sheet (Rendered outside the modal) */}
+      <Sheet ref={bottomSheetModalRef} snapPoints={[200]} onClose={closeModalAndSheet}>
         <View className="flex-1">
           <Text className="text-ct text-center">What kind of transaction is this?</Text>
-          <TouchableOpacity className="mx-6 mt-8 flex-row items-center justify-between ">
+          <TouchableOpacity
+            onPress={() => {
+              router.push('/home/incomeDetail');
+              closeModalAndSheet(); // Close both modal and sheet
+            }}
+            className="mx-6 mt-8 flex-row items-center justify-between ">
             <View className="flex-row gap-3">
               <ArrowUp color={'#514347'} />
               <Text className="text-st">Income</Text>
             </View>
             <RightArrow />
           </TouchableOpacity>
-          <TouchableOpacity className="mx-6 mt-8 flex-row items-center justify-between ">
+          <TouchableOpacity
+            onPress={() => {
+              router.push('/home/expenseDetail');
+              closeModalAndSheet(); // Close both modal and sheet
+            }}
+            className="mx-6 mt-8 flex-row items-center justify-between ">
             <View className="flex-row gap-3">
               <ArrowDown color={'#514347'} />
               <Text className="text-st">Expense</Text>

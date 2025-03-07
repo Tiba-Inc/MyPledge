@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '~/components/Button';
-import { Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { router, Stack } from 'expo-router';
 import EyeOff from '~/assets/svgs/eyeOff';
@@ -28,7 +28,7 @@ export default function Login() {
   };
 
   return (
-    <View className="mx-4 flex-1">
+    <KeyboardAvoidingView className="mx-4 flex-1">
       <Stack.Screen options={{ headerTitle: 'Log in', headerTitleAlign: 'center' }} />
 
       <View className="flex-1">
@@ -102,7 +102,7 @@ export default function Login() {
           title="Log in"
           onPress={handleSubmit(onSubmit)}
           disabled={!isValid}
-          textColor={isValid == true ? 'text-white' : 'text-green-400'}
+          // textColor={isValid ? 'text-white' : '  text-green-400'}
         />
 
         {/* Forgot Password Button */}
@@ -126,6 +126,6 @@ export default function Login() {
           textColor="#8A4A65"
         />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
