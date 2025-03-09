@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, Animated, Easing, Modal, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Animated,
+  Easing,
+  Modal,
+  StyleSheet,
+  SafeAreaView,
+} from 'react-native';
 import { PieChart } from 'react-native-gifted-charts';
 import { router, Stack, useNavigation } from 'expo-router';
 import { BlurView } from 'expo-blur';
@@ -9,6 +18,8 @@ import Plus from '~/assets/svgs/plus';
 import { Sheet, useSheetRef } from '~/components/nativewindui/Sheet';
 import ArrowUp from '~/assets/svgs/arrowUp';
 import ArrowDown from '~/assets/svgs/arrowDown';
+import Menu from '~/assets/svgs/menu';
+import { DrawerActions } from '@react-navigation/native';
 
 // Define types for the Legend component props
 type LegendProps = {
@@ -28,33 +39,23 @@ const Legend: React.FC<LegendProps> = ({ title, subtitle, color }) => (
   </View>
 );
 
+// Function to determine greeting based on the time of day
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour >= 5 && hour < 12) return 'Good morning';
+  if (hour >= 12 && hour < 17) return 'Good afternoon';
+  if (hour >= 17 && hour < 20) return 'Good evening';
+  return 'Good night';
+};
+
 const HomeScreen: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSheetVisible, setIsSheetVisible] = useState(false); // Track sheet visibility
   const rotateValue = new Animated.Value(0);
-  const [greeting, setGreeting] = useState('');
   const bottomSheetModalRef = useSheetRef();
   const Navigation = useNavigation();
 
-  // Function to determine greeting based on the time of day
-  const getGreeting = () => {
-    const hour = new Date().getHours();
-    if (hour >= 5 && hour < 12) return 'Good morning';
-    if (hour >= 12 && hour < 17) return 'Good afternoon';
-    if (hour >= 17 && hour < 20) return 'Good evening';
-    return 'Good night';
-  };
-
-  // Update greeting dynamically every minute
-  useEffect(() => {
-    setGreeting(getGreeting()); // Set initial greeting
-
-    const interval = setInterval(() => {
-      setGreeting(getGreeting());
-    }, 60000); // Update every 60 seconds
-
-    return () => clearInterval(interval); // Cleanup interval on unmount
-  }, []);
+  
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -92,6 +93,7 @@ const HomeScreen: React.FC = () => {
 
   const handlePledgeToSave = () => {
     console.log('Pledge to save button pressed');
+    router.push('/home/pledgeToSave');
     // Add navigation or logic for pledging to save
   };
 
@@ -108,20 +110,33 @@ const HomeScreen: React.FC = () => {
     bottomSheetModalRef.current?.close(); // Close the sheet
   };
 
+  const greeting = getGreeting(); // Get the current greeting
+  const navigation = useNavigation(); // Use the useNavigation hook
+
+  const onToggle = () => {
+    try {
+      navigation.dispatch(DrawerActions.openDrawer());
+    } catch (error) {
+      console.error('Failed to open drawer:', error);
+    }
+  };
+
   return (
     <>
       <View className="flex-1 p-4">
         <Stack.Screen
           options={{
             headerShadowVisible: false,
-            header: () => (
-              <View>
-                <Text className="text-2xl font-bold text-black">{greeting}, User</Text>
-              </View>
-            ),
+            headerShown: false,
           }}
         />
-        <Text className="text-2xl font-bold text-black">{greeting}, User</Text>
+        <SafeAreaView style={{ marginTop: 28 }}>
+          {/* Make the Menu Icon a TouchableOpacity */}
+          <TouchableOpacity onPress={onToggle}>
+            <Menu color={'#514347'} />
+          </TouchableOpacity>
+          <Text className='text-ct mt-3'>{greeting}, User</Text>
+        </SafeAreaView>
         <Text className="mt-5 text-lg font-bold text-black">Account</Text>
         <TouchableOpacity
           onPress={() => router.push('/home/account')}

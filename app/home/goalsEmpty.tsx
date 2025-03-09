@@ -2,8 +2,8 @@ import { View, Text, useWindowDimensions } from 'react-native';
 import React from 'react';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Stack, useNavigation, useRouter } from 'expo-router';
-import ActiveGoals from '../activeGoals';
-import ReachedGoals from '../reachedGoals';
+import ActiveGoals from '../(drawer)/activeGoals';
+import ReachedGoals from '../(drawer)/reachedGoals';
 import { HeaderBackButton } from '@react-navigation/elements';
 
 type Props = {};
@@ -20,7 +20,7 @@ const routes = [
 
 const GoalsEmply = (props: Props) => {
   const layout = useWindowDimensions();
-  const [index, setIndex] = React.useState(0);
+  const [indexP, setIndex] = React.useState(0);
   const router = useRouter();
   const navigation = useNavigation(); // Use the useNavigation hook
   return (
@@ -28,7 +28,7 @@ const GoalsEmply = (props: Props) => {
       <Stack.Screen
         options={{
           headerShown: true,
-          title: 'Goals',
+          title: 'Navigation',
           headerShadowVisible: false,
         }}
       />
@@ -42,7 +42,9 @@ const GoalsEmply = (props: Props) => {
               <HeaderBackButton {...props} onPress={() => navigation.goBack()} />
             ),
 
-            headerTitle: () => <Text className="text-ct font-normal">Goals</Text>,
+            headerTitle: () => (
+              <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#000' }}>Goals</Text>
+            ),
             headerStyle: {
               backgroundColor: '#fff', // Customize header background color
             },

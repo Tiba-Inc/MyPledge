@@ -32,7 +32,7 @@ export default ({ config }) => ({
     name: getAppName(),
     slug: 'MyPledge',
     version: '1.0.0',
-    scheme: 'MyPledge',
+    scheme: 'm  ypledge',
     web: {
       bundler: 'metro',
       output: 'static',
