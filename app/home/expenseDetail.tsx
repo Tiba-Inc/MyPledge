@@ -4,7 +4,6 @@ import { useForm, Controller } from 'react-hook-form';
 import { router, Stack } from 'expo-router';
 import { Button } from '~/components/Button';
 import SheetArrow from '~/assets/svgs/sheetArrow';
-import RightArrow from '~/assets/svgs/rightArrow';
 import { Sheet, useSheetRef } from '~/components/nativewindui/Sheet';
 import Checkbox from 'expo-checkbox';
 

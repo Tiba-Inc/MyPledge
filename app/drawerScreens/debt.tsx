@@ -3,12 +3,12 @@ import React from 'react'
 
 type Props = {}
 
-const ActiveGoals = (props: Props) => {
+const Debt = (props: Props) => {
   return (
     <View>
-      <Text>ActiveGoals</Text>
+      <Text>Debt</Text>
     </View>
   )
 }
 
-export default ActiveGoals
+export default Debt

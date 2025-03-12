@@ -3,12 +3,12 @@ import React from 'react'
 
 type Props = {}
 
-const Investments = (props: Props) => {
+const Projections = (props: Props) => {
   return (
     <View>
-      <Text>I</Text>
+      <Text>Projections</Text>
     </View>
   )
 }
 
-export default Investments
+export default Projections

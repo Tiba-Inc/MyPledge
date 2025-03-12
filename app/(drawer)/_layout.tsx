@@ -28,36 +28,22 @@ type DrawerItemType = {
   label: string;
   icon: JSX.Element;
   route:
-    | '/(drawer)/bills'
-    | '/(drawer)/debt'
-    | '/(drawer)/investments'
-    | '/(drawer)/projections'
-    | '/(drawer)/home/settings'
+    | '/drawerScreens/bills'
+    | '/drawerScreens/debt'
+    | '/drawerScreens/investments'
+    | '/drawerScreens/projections'
+    | '/drawerScreens/articles'
+    | '/drawerScreens/challenges'
+    | '/drawerScreens/currencyConverter'
+    | '/drawerScreens/share'
+    | '/drawerScreens/settings'
+    | '/drawerScreens/help'
+    | '/drawerScreens/feedback'
     | '/'
     | string; // Fallback for other potential routes
 };
 
-// Function to determine greeting based on the time of day
-const getGreeting = () => {
-  const hour = new Date().getHours();
-  if (hour >= 5 && hour < 12) return 'Good morning';
-  if (hour >= 12 && hour < 17) return 'Good afternoon';
-  if (hour >= 17 && hour < 20) return 'Good evening';
-  return 'Good night';
-};
-
 const DrawerLayout = () => {
-  const greeting = getGreeting(); // Get the current greeting
-  const navigation = useNavigation(); // Use the useNavigation hook
-
-  const onToggle = () => {
-    try {
-      navigation.dispatch(DrawerActions.openDrawer());
-    } catch (error) {
-      console.error('Failed to open drawer:', error);
-    }
-  };
-
   return (
     <Drawer
       drawerContent={(props) => <CustomDrawerContent {...props} />}
@@ -66,17 +52,6 @@ const DrawerLayout = () => {
         drawerActiveBackgroundColor: '#171D1E',
         drawerActiveTintColor: '#32cd32',
         headerShown: false,
-        // header: () => (
-        //   <SafeAreaView style={{ marginHorizontal: 16, marginTop: 28 }}>
-        //     {/* Make the Menu Icon a TouchableOpacity */}
-        //     <TouchableOpacity onPress={onToggle}>
-        //       <Menu color={'#514347'} />
-        //     </TouchableOpacity>
-        //     <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#000' }}>
-        //       {greeting}, User
-        //     </Text>
-        //   </SafeAreaView>
-        // ),
       }}>
       <Drawer.Screen name="bills" options={{ headerTitle: 'Home' }} />
       <Drawer.Screen name="(tabs)" options={{ headerTitle: '' }} />
@@ -92,23 +67,27 @@ const CustomDrawerContent = (props: any) => {
 
   // Drawer Sections
   const drawerItems: DrawerItemType[] = [
-    { label: 'Bills', icon: <Bills />, route: '/(drawer)/bills' },
-    { label: 'Debt', icon: <Debt />, route: '/(drawer)/debt' },
-    { label: 'Investments', icon: <Investments />, route: '/(drawer)/investments' },
-    { label: 'Projections', icon: <Projections />, route: '/(drawer)/projections' },
+    { label: 'Bills', icon: <Bills />, route: '/drawerScreens/bills' },
+    { label: 'Debt', icon: <Debt />, route: '/drawerScreens/debt' },
+    { label: 'Investments', icon: <Investments />, route: '/drawerScreens/investments' },
+    { label: 'Projections', icon: <Projections />, route: '/drawerScreens/projections' },
   ];
 
   const extraItems: DrawerItemType[] = [
-    { label: 'Articles', icon: <Articles />, route: '/' },
-    { label: 'Challenges', icon: <Challenges />, route: '/' },
-    { label: 'Currency Converter', icon: <CurrencyConverter />, route: '/' },
-    { label: 'Share App', icon: <Share />, route: '/' },
+    { label: 'Articles', icon: <Articles />, route: '/drawerScreens/articles' },
+    { label: 'Challenges', icon: <Challenges />, route: '/drawerScreens/challenges' },
+    {
+      label: 'Currency Converter',
+      icon: <CurrencyConverter />,
+      route: '/drawerScreens/currencyConverter',
+    },
+    { label: 'Share App', icon: <Share />, route: '/drawerScreens/share' },
   ];
 
   const settingsItems: DrawerItemType[] = [
-    { label: 'Settings', icon: <Settings />, route: '/(drawer)/home/settings' },
-    { label: 'Help', icon: <Help />, route: '/' },
-    { label: 'User Feedback', icon: <Feedback />, route: '/' },
+    { label: 'Settings', icon: <Settings />, route: '/drawerScreens/settings' },
+    { label: 'Help', icon: <Help />, route: '/drawerScreens/help' },
+    { label: 'User Feedback', icon: <Feedback />, route: '/drawerScreens/feedback' },
   ];
 
   return (
@@ -123,13 +102,8 @@ const CustomDrawerContent = (props: any) => {
 
         {/* User Profile Section */}
         <TouchableOpacity
-          style={{
-            marginHorizontal: 12,
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 8,
-            paddingVertical: 24,
-          }}>
+          onPress={() => router.push('/(drawer)/userProfile')}
+          className="mx-3 flex-row items-center gap-8 py-3">
           <UserAccount />
           <View style={{ flex: 1 }}>
             <Text style={{ fontSize: 18, fontWeight: '600' }}>(Name)</Text>

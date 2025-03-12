@@ -3,12 +3,12 @@ import React from 'react'
 
 type Props = {}
 
-const Projections = (props: Props) => {
+const Feedback = (props: Props) => {
   return (
     <View>
-      <Text>projections</Text>
+      <Text>Feedback</Text>
     </View>
   )
 }
 
-export default Projections
+export default Feedback

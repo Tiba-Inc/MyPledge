@@ -57,7 +57,7 @@ export default function Registerpwd() {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                className="border-b"
+                className="border-b border-b-[#C6C6C8] py-2"
                 secureTextEntry
               />
             </View>

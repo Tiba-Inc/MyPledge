@@ -2,7 +2,7 @@ import { View, Text, useWindowDimensions } from 'react-native';
 import React from 'react';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Stack, useNavigation, useRouter } from 'expo-router';
-import ActiveGoals from '../activeGoals';
+import ActiveGoals from '../userProfile';
 import ReachedGoals from '../reachedGoals';
 import { HeaderBackButton } from '@react-navigation/elements';
 

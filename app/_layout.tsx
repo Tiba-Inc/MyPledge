@@ -39,6 +39,7 @@ export default function RootLayout() {
                 <Stack.Screen name="(drawer)" options={DRAWER_OPTIONS} />
                 <Stack.Screen name="auth" options={{ headerShown: false }} />
                 <Stack.Screen name="home" options={{ headerShown: false }} />
+                <Stack.Screen name="drawerScreens" options={{ headerShown: false }} />
                 <Stack.Screen name="launch" options={{ headerShown: false }} />
                 <Stack.Screen name="modal" options={MODAL_OPTIONS} />
               </Stack>
