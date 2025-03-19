@@ -3,7 +3,7 @@ import React from 'react';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Stack, useNavigation, useRouter } from 'expo-router';
 import ActiveGoals from '../(drawer)/userProfile';
-import ReachedGoals from '../(drawer)/reachedGoals';
+import ReachedGoals from '../home/reachedGoals';
 import { HeaderBackButton } from '@react-navigation/elements';
 
 type Props = {};
@@ -20,7 +20,7 @@ const routes = [
 
 const GoalsEmply = (props: Props) => {
   const layout = useWindowDimensions();
-  const [indexP, setIndex] = React.useState(0);
+  const [index, setIndex] = React.useState(0);
   const router = useRouter();
   const navigation = useNavigation(); // Use the useNavigation hook
   return (

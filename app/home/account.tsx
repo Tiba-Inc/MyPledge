@@ -33,7 +33,6 @@ const Account = (props: Props) => {
       <Stack.Screen
         options={{
           headerShown: true,
-          title: 'Navigation',
           headerShadowVisible: false,
         }}
       />

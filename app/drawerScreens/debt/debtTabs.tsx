@@ -2,50 +2,35 @@ import { View, Text, useWindowDimensions } from 'react-native';
 import React from 'react';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Stack, useNavigation, useRouter } from 'expo-router';
-import ActiveGoals from '../../home/goalsActive';
-import ReachedGoals from '../../home/reachedGoals';
+import Active from './active';
+import Closed from './closed';
 import { HeaderBackButton } from '@react-navigation/elements';
 
 type Props = {};
 
 const renderScene = SceneMap({
-  first: ActiveGoals,
-  second: ReachedGoals,
+  first: Active,
+  second: Closed,
 });
 
 const routes = [
   { key: 'first', title: 'Active' },
-  { key: 'second', title: 'Reached' },
+  { key: 'second', title: 'Closed' },
 ];
 
-const GoalsEmply = (props: Props) => {
+const DebtTabs = (props: Props) => {
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
   const router = useRouter();
   const navigation = useNavigation(); // Use the useNavigation hook
   return (
     <View className="flex-1">
-      <Stack.Screen
-        options={{
-          headerShown: true,
-          title: 'Goals',
-          headerShadowVisible: false,
-        }}
-      />
-
       {/* Main Content Area */}
       <View className="flex-1">
         <Stack.Screen
           options={{
-            headerShown: true,
-            headerLeft: (props) => (
-              <HeaderBackButton {...props} onPress={() => navigation.goBack()} />
-            ),
-
-            headerTitle: () => <Text className="text-ct font-normal">Goals</Text>,
-            headerStyle: {
-              backgroundColor: '#fff', // Customize header background color
-            },
+            headerTitle: 'Debt',
+            headerShadowVisible: false,
           }}
         />
         <TabView
@@ -71,4 +56,4 @@ const GoalsEmply = (props: Props) => {
   );
 };
 
-export default GoalsEmply;
+export default DebtTabs;

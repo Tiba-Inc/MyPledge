@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '~/components/Button';
-  import { Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
-  import { useForm, Controller } from 'react-hook-form';
+import { Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { useForm, Controller } from 'react-hook-form';
 import { router, Stack } from 'expo-router';
 import EyeOff from '~/assets/svgs/eyeOff';
 import Eye from '~/assets/svgs/eye';
@@ -28,38 +28,38 @@ export default function Login() {
   };
 
   return (
-    <KeyboardAvoidingView className="mx-4 flex-1">
+    <View className="mx-4 flex-1">
       <Stack.Screen options={{ headerTitle: 'Log in', headerTitleAlign: 'center' }} />
 
-      <View className="flex-1">
-          {/* Phone Number Field */}
-          <View className="mb-4">
-            <Controller
-              control={control}
-              rules={{
-                required: 'Phone number is required',
-                pattern: {
-                  value: /^\d{10}$/, // Validates a 10-digit number
-                  message: 'Enter a valid phone number',
-                },
-              }}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <View>
-                  <Text className="text-reg mb-1 mt-6">Phone Number</Text>
-                  <TextInput
-                    placeholder="Enter your phone number"
-                    onBlur={onBlur}
-                    onChangeText={onChange}
-                    value={value}
-                    keyboardType="phone-pad"
-                    className="border-b border-b-[#C6C6C8] py-2"
-                  />
-                </View>
-              )}
-              name="number"
-            />
-            {errors.number && <Text className="text-red-700">{errors.number.message}</Text>}
-          </View>
+      <KeyboardAvoidingView className="flex-1">
+        {/* Phone Number Field */}
+        <View className="mb-4">
+          <Controller
+            control={control}
+            rules={{
+              required: 'Phone number is required',
+              pattern: {
+                value: /^\d{10}$/, // Validates a 10-digit number
+                message: 'Enter a valid phone number',
+              },
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <View>
+                <Text className="text-reg mb-1 mt-6">Phone Number</Text>
+                <TextInput
+                  placeholder="Enter your phone number"
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                  keyboardType="phone-pad"
+                  className="border-b border-b-[#C6C6C8] py-2"
+                />
+              </View>
+            )}
+            name="number"
+          />
+          {errors.number && <Text className="text-red-700">{errors.number.message}</Text>}
+        </View>
 
         {/* Password Field */}
         <View className="mb-4">
@@ -102,7 +102,7 @@ export default function Login() {
           title="Log in"
           onPress={handleSubmit(onSubmit)}
           disabled={!isValid}
-          // textColor={isValid ? 'text-white' : '  text-green-400'}
+          variant='primary'
         />
 
         {/* Forgot Password Button */}
@@ -111,10 +111,8 @@ export default function Login() {
           textColor="#8A4A65"
           title="Forgot password"
           onPress={() => router.push('/auth/resetpwd')}
-          // Uncomment and add functionality if needed
-          // onPress={() => router.push('/auth/registerpwd')}
         />
-      </View>
+      </KeyboardAvoidingView>
 
       {/* Create Account Section */}
       <View className="mb-10 items-center gap-3 border-t border-t-[#D8DADD] pt-4">
@@ -126,6 +124,6 @@ export default function Login() {
           textColor="#8A4A65"
         />
       </View>
-    </KeyboardAvoidingView>
+    </View>
   );
 }

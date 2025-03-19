@@ -89,14 +89,16 @@ const BankSave = (props: Props) => {
               <TouchableOpacity
                 key={index}
                 onPress={() => handleBankSelect(bank)}
-                className="mb-4 flex-row items-center gap-5">
-                <BouncyCheckbox
-                  isChecked={selectedBank === bank} // Reflect the current local state
-                  onPress={() => handleBankSelect(bank)}
-                  fillColor={selectedBank === bank ? '#34D399' : undefined}
-                  size={24}
-                  iconStyle={{ borderRadius: 8 }} // Customize the checkbox appearance
-                />
+                className="mb-4 flex-row items-center">
+                <View className="">
+                  <BouncyCheckbox
+                    isChecked={selectedBank === bank} // Reflect the current local state
+                    onPress={() => handleBankSelect(bank)}
+                    fillColor={selectedBank === bank ? '#34D399' : undefined}
+                    size={24}
+                    iconStyle={{ borderRadius: 8 }} // Customize the checkbox appearance
+                  />
+                </View>
                 <Text className="text-reg">{bank}</Text>
               </TouchableOpacity>
             ))}

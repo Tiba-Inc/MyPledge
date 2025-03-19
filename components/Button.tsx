@@ -14,17 +14,50 @@ type ButtonProps = {
   rightIcon?: React.ReactNode; // Icon on the right
   className?: string; // Parent-defined Tailwind styles
   textColor?: string; // Parent-defined text color
+  variant?: 'primary' | 'secondary'; // Variant for primary or secondary styling
 } & TouchableOpacityProps;
 
 export const Button = forwardRef<View, ButtonProps>(
-  ({ title, loading, leftIcon, rightIcon, className, textColor, disabled, ...props }, ref) => {
+  (
+    {
+      title,
+      loading,
+      leftIcon,
+      rightIcon,
+      className,
+      textColor,
+      disabled,
+      variant = 'primary',
+      ...props
+    },
+    ref
+  ) => {
+    // Define the styles based on the variant
+    const backgroundColor = disabled
+      ? '#1D1B201F' // Disabled state background color
+      : variant === 'primary'
+        ? '#8A4A65' // Primary background color
+        : '#FCE186'; // Secondary background color
+
+    const textColorStyle = disabled
+      ? '#000000' // Disabled state text color
+      : variant === 'primary'
+        ? textColor || '#FFFFFF' // Primary text color (default to white if not provided)
+        : '#231B00'; // Secondary text color
+
+    // Check if the className includes a background color (e.g., bg-transparent, bg-red-500)
+    const hasBackgroundColorClass = className?.includes('bg-');
+
     return (
       <TouchableOpacity
         ref={ref}
         disabled={disabled || loading}
+        style={{
+          // Only apply backgroundColor if no Tailwind background color class is present
+          backgroundColor: hasBackgroundColorClass ? undefined : backgroundColor,
+        }}
         className={[
           'flex-row items-center justify-center rounded-[99px] px-6 py-4', // Default styles
-          disabled ? 'bg-[#1D1B201F] text-green-500' : 'bg-[#8A4A65]', // Background color and state handling
           'active:opacity-25', // Active state effect
           className, // Allow parent styles
         ].join(' ')}
@@ -32,7 +65,7 @@ export const Button = forwardRef<View, ButtonProps>(
         {/* Loading Spinner */}
         {loading && (
           <ActivityIndicator
-            color={disabled ? '#9CA3AF' : '#FFFFFF'}
+            color={disabled ? '#9CA3AF' : variant === 'primary' ? '#FFFFFF' : '#231B00'}
             style={{ marginRight: leftIcon ? 8 : 0 }}
           />
         )}
@@ -47,7 +80,7 @@ export const Button = forwardRef<View, ButtonProps>(
             style={{
               fontSize: 16,
               fontWeight: '600',
-              color: disabled ? '#000000' : textColor || '#FFFFFF',
+              color: textColorStyle, // Apply dynamic text color
             }}>
             {title}
           </Text>
