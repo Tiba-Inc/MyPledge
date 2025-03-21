@@ -41,7 +41,7 @@ export default function Register() {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                className="border-b"
+                className="border-b border-b-[#C6C6C8] py-2"
               />
             </View>
           )}
@@ -69,7 +69,7 @@ export default function Register() {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                className="border-b"
+                className="border-b border-b-[#C6C6C8] py-2"
                 keyboardType="phone-pad"
               />
             </View>
@@ -98,7 +98,7 @@ export default function Register() {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                className="border-b"
+                className="border-b border-b-[#C6C6C8] py-2"
                 keyboardType="email-address"
               />
             </View>

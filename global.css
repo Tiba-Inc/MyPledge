@@ -166,3 +166,10 @@
   line-height: 44px;
   letter-spacing: 0px;
 }
+.text-heading {
+  font-size: 28px;
+  font-weight: 400;
+  color: #171D1E;
+  line-height: 38px;
+  letter-spacing: 0px;
+}
