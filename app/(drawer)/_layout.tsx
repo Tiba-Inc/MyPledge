@@ -22,6 +22,7 @@ import UserAccount from '~/assets/svgs/userAccount';
 import RightArrow from '~/assets/svgs/rightArrow';
 import Cancel from '~/assets/svgs/cancel';
 import Menu from '~/assets/svgs/menu';
+import User from '~/assets/svgs/user';
 
 // Define a TypeScript type for drawer items
 type DrawerItemType = {
@@ -103,8 +104,10 @@ const CustomDrawerContent = (props: any) => {
         {/* User Profile Section */}
         <TouchableOpacity
           onPress={() => router.push('/(drawer)/userProfile')}
-          className="mx-3 flex-row items-center gap-8 py-3">
-          <UserAccount />
+          className="mx-3 flex-row items-center gap-2 py-3">
+          <View className="size-14 items-center justify-center rounded-full bg-[#FFD9E5]">
+            <User width={56} height={56} color="#514347" />
+          </View>
           <View style={{ flex: 1 }}>
             <Text style={{ fontSize: 18, fontWeight: '600' }}>(Name)</Text>
             <View

@@ -96,7 +96,7 @@ const BankSave = (props: Props) => {
                     onPress={() => handleBankSelect(bank)}
                     fillColor={selectedBank === bank ? '#34D399' : undefined}
                     size={24}
-                    iconStyle={{ borderRadius: 8 }} // Customize the checkbox appearance
+                    iconStyle={{ borderRadius: 12 }} // Set borderRadius to half of the size to make it a perfect circle
                   />
                 </View>
                 <Text className="text-reg">{bank}</Text>
@@ -105,8 +105,8 @@ const BankSave = (props: Props) => {
           </View>
           {/* Confirm Button */}
           <Button
-            textColor="#231B00"
-            className="mx-4 mb-8 bg-[#FCE186]"
+            className="mx-4 mb-8"
+            variant="secondary"
             title="Confirm"
             onPress={handleConfirm} // Update form value and close sheet
           />

@@ -18,15 +18,25 @@ import Pencil from '~/assets/svgs/pencil';
 import { Sheet, useSheetRef } from '~/components/nativewindui/Sheet';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
-// Dummy data structure
+export interface Repayment {
+  id: number; // Unique ID for the repayment
+  amount: number; // Amount paid in this repayment
+  date: string; // Date of the repayment
+  type: 'full' | 'partial'; // Type of payment (full or partial)
+}
+
 export interface DebtData {
   id: number;
   type: string;
   name: string;
-  amount: string;
-  date: string;
-  status: 'active' | 'closed'; // Add status field
+  totalAmount: number; // Total debt amount
+  paidAmount: number; // Amount already paid
+  startDate: string; // Start date of the debt
+  dueDate: string; // Due date of the debt
+  status: 'active' | 'closed';
+  repayments: Repayment[]; // Array of repayment records
 }
+
 type Props = {};
 
 const AddDebt = (props: Props) => {
@@ -260,7 +270,7 @@ const AddDebt = (props: Props) => {
 
       {/* Debt Selection Sheet */}
       <Sheet ref={debtTypeSheetRef} snapPoints={[calculateSheetHeight(debtTypes)]}>
-        <View className="flex-1 mb-3">
+        <View className="mb-3 flex-1">
           <Text className="text-ct ml-5">Debt type</Text>
           <View className="mx-8 mt-8">
             {debtTypes.map((type, index) => (

@@ -5,7 +5,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { Button } from '~/components/Button';
 import SheetArrow from '~/assets/svgs/sheetArrow';
 import { Sheet, useSheetRef } from '~/components/nativewindui/Sheet';
-import Checkbox from 'expo-checkbox';
+import BouncyCheckbox from 'react-native-bouncy-checkbox'; // Import BouncyCheckbox
 
 type Props = {};
 
@@ -65,7 +65,7 @@ const PledgeFrequencySave = (props: Props) => {
             required: 'Saving frequency is required',
           }}
           render={({ field: { value } }) => (
-            <View className='mr-5'>
+            <View className="mr-5">
               <Text className="text-reg mb-1">Select saving frequency</Text>
               <Pressable
                 onPress={() => frequencySheetRef.current?.present()}
@@ -90,27 +90,29 @@ const PledgeFrequencySave = (props: Props) => {
                 key={index}
                 onPress={() => handleFrequencySelect(frequency)}
                 className="mb-4 flex-row items-center gap-5">
-                <Checkbox
-                  value={selectedFrequency === frequency} // Reflect the current local state
-                  onValueChange={() => handleFrequencySelect(frequency)}
-                  color={selectedFrequency === frequency ? '#34D399' : undefined}
-                  style={{
-                    borderRadius: 12,
-                    width: 24,
-                    height: 24,
-                  }}
-                />
+                <View className="|">
+                  <BouncyCheckbox
+                    isChecked={selectedFrequency === frequency} // Reflect the current local state
+                    onPress={() => handleFrequencySelect(frequency)}
+                    fillColor={selectedFrequency === frequency ? '#34D399' : undefined}
+                    size={24}
+                    iconStyle={{ borderRadius: 12 }} // Ensure the checkbox is a perfect circle
+                    innerIconStyle={{ borderRadius: 12 }} // Ensure the inner icon is also a perfect circle
+                  />
+                </View>
                 <Text className="text-reg">{frequency}</Text>
               </TouchableOpacity>
             ))}
           </View>
           {/* Confirm Button */}
-          <Button
-            textColor="#231B00"
-            className="mx-4 mb-8 bg-[#FCE186]"
-            title="Confirm"
-            onPress={handleConfirm} // Update form value and close sheet
-          />
+          <View>
+            <Button
+              className="mx-4 mb-8"
+              variant="secondary"
+              title="Confirm"
+              onPress={handleConfirm} // Update form value and close sheet
+            />
+          </View>
         </View>
       </Sheet>
 

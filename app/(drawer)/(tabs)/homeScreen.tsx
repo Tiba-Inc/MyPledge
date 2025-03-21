@@ -55,8 +55,6 @@ const HomeScreen: React.FC = () => {
   const bottomSheetModalRef = useSheetRef();
   const Navigation = useNavigation();
 
-  
-
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
     Animated.timing(rotateValue, {
@@ -135,7 +133,7 @@ const HomeScreen: React.FC = () => {
           <TouchableOpacity onPress={onToggle}>
             <Menu color={'#514347'} />
           </TouchableOpacity>
-          <Text className='text-ct mt-3'>{greeting}, User</Text>
+          <Text className="text-ct mt-3">{greeting}, User</Text>
         </SafeAreaView>
         <Text className="mt-5 text-lg font-bold text-black">Account</Text>
         <TouchableOpacity
@@ -172,14 +170,12 @@ const HomeScreen: React.FC = () => {
         </View>
 
         {/* Floating Action Button (FAB) */}
-        <View className="absolute bottom-10 right-8">
-          <Animated.View style={{ transform: [{ rotate: rotateInterpolation }] }}>
+        <View className="absolute bottom-8 right-6">
             <TouchableOpacity
               className="rounded-full bg-[#fce186] p-4 shadow-lg shadow-black"
               onPress={toggleExpand}>
               <Plus color="#231B00" />
             </TouchableOpacity>
-          </Animated.View>
         </View>
       </View>
 
@@ -189,7 +185,7 @@ const HomeScreen: React.FC = () => {
         <BlurView intensity={50} style={StyleSheet.absoluteFill} />
 
         {/* Expanded Buttons */}
-        <View className="absolute bottom-40 right-5 gap-3">
+        <View className="absolute bottom-44 right-5 gap-3">
           {[
             { label: 'Set goal', onPress: handleSetGoal },
             { label: 'Pledge to save', onPress: handlePledgeToSave },
