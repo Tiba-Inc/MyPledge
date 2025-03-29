@@ -4,7 +4,7 @@ import { router, Stack, useNavigation } from 'expo-router';
 import { HeaderBackButton } from '@react-navigation/elements';
 import { StyleSheet } from 'react-native';
 
-export default function _layout() {
+export default function DrawerScreenLayout() {
   const navigation = useNavigation();
 
   return (

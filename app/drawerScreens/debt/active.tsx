@@ -4,12 +4,12 @@ import Ledger from '~/assets/svgs/ledger';
 import { Button } from '~/components/Button';
 import { useRouter } from 'expo-router';
 import { DebtData } from '~/app/drawerScreens/debt/addDebt';
-import { dummyDebts } from '~/lib/data/dummyDebts'; // Import dummyDebts
+import { DummyDebts } from '~/lib/data/dummyDebts'; // Import dummyDebts
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Minus from '~/assets/svgs/minus';
 import Plus from '~/assets/svgs/plus';
 import Bank from '~/assets/svgs/bank';
-import CalendarSync from '~/assets/svgs/calendarSync';
+import DebtDate from '~/assets/svgs/debtDate';
 import * as Progress from 'react-native-progress'; // Import Progress.Bar
 
 type Props = {};
@@ -18,7 +18,7 @@ const Active = (props: Props) => {
   const router = useRouter();
 
   // Filter the dummy data to get only active debts
-  const activeDebts = dummyDebts.filter((debt) => debt.status === 'active');
+  const activeDebts = DummyDebts.filter((debt) => debt.status === 'active');
 
   // Define icons and colors for different debt types
   const debtIcons = {
@@ -55,14 +55,14 @@ const Active = (props: Props) => {
             {item.type === 'I borrowed from a bank' ? (
               <DebtIcon width={20} height={20} />
             ) : (
-              <DebtIcon color={'#FFFFFF'}/>
+              <DebtIcon color={'#FFFFFF'} />
             )}
           </View>
           <Text>{item.name}</Text>
         </View>
         <Text>{item.totalAmount}</Text>
-        <View className="flex-row gap-2">
-          <CalendarSync />
+        <View className="flex-row gap-2 items-center">
+          <DebtDate />
           <Text>{item.dueDate}</Text>
         </View>
         <View className="flex-row items-center gap-4">

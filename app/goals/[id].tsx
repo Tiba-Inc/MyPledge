@@ -10,7 +10,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Stack } from 'expo-router';
 import * as Progress from 'react-native-progress'; // Import react-native-progress
-import { dummyGoals } from '~/lib/data/dummyGoalsData'; // Import your dummy data
+import { DummyGoals } from '~/lib/data/dummyGoalsData'; // Import your dummy data
 import Pencil from '~/assets/svgs/pencil'; // Import your icons
 import Trash from '~/assets/svgs/trash';
 import Check from '~/assets/svgs/check';
@@ -24,7 +24,7 @@ const GoalDetails = (props: Props) => {
   const router = useRouter();
 
   // Find the goal by ID
-  const goal = dummyGoals.find((goal) => goal.id === Number(id));
+  const goal = DummyGoals.find((goal) => goal.id === Number(id));
 
   // Sheet ref for Add money
   const addMoneySheetRef = useSheetRef();

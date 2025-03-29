@@ -5,7 +5,6 @@ import PDF from '~/assets/svgs/pdf';
 import { certificates, pledges } from '~/lib/data/dummyData';
 import { Sheet } from '~/components/nativewindui/Sheet'; // Import the Sheet component
 import Share from '~/assets/svgs/share';
-import ABSABank from '~/assets/svgs/absaBank';
 import Download from '~/assets/svgs/download';
 import UIA from '~/assets/svgs/uia';
 
@@ -27,6 +26,24 @@ const Certificates = (props: Props) => {
     return pledge ? pledge.bankName : 'Unknown Bank';
   };
 
+  // Function to handle download action
+  const handleDownload = () => {
+    if (selectedCertificate) {
+      console.log('Downloading certificate:', selectedCertificate.name);
+      // Add your download logic here
+    }
+    sheetRef.current?.dismiss(); // Close the sheet after action
+  };
+
+  // Function to handle share action
+  const handleShare = () => {
+    if (selectedCertificate) {
+      console.log('Sharing certificate:', selectedCertificate.name);
+      // Add your share logic here
+    }
+    sheetRef.current?.dismiss(); // Close the sheet after action
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-gray-100 p-4">
       {/* Certificates List */}
@@ -46,9 +63,12 @@ const Certificates = (props: Props) => {
           </TouchableOpacity>
         )}
         ListEmptyComponent={
-          <View className="flex-1 items-center justify-center">
+          <View className="mt-40 flex-1 items-center">
             <Cert />
-            <Text className="text-xl text-gray-500">No certificates available.</Text>
+            <Text className="text-title">No certificates yet.</Text>
+            <Text className="text=cd text-center">
+              Your certificates will show up here when you acheive your milestones
+            </Text>
           </View>
         }
       />
@@ -58,7 +78,7 @@ const Certificates = (props: Props) => {
         <View className="flex-1 p-4">
           {selectedCertificate && (
             <>
-              <View className="flex-row gap-3 items-center">
+              <View className="flex-row items-center gap-3">
                 <View className="">
                   <UIA />
                 </View>
@@ -69,15 +89,18 @@ const Certificates = (props: Props) => {
               </View>
             </>
           )}
-          <View className="mt-7 gap-4 mx-3">
+          <View className="mx-3 mt-7 gap-4">
+            {/* Download Button */}
             <TouchableOpacity
-              onPress={() => sheetRef.current?.dismiss()}
+              onPress={handleDownload} // Call handleDownload function
               className="flex-row items-center gap-4">
               <Download />
               <Text className="text-reg">Download</Text>
             </TouchableOpacity>
+
+            {/* Share Button */}
             <TouchableOpacity
-              onPress={() => sheetRef.current?.dismiss()}
+              onPress={handleShare} // Call handleShare function
               className="flex-row items-center gap-5">
               <Share width={18} height={20} />
               <Text className="text-reg ml-1">Share</Text>

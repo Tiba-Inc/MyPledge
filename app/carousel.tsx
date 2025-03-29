@@ -28,7 +28,7 @@ export default function Carousel() {
   const buttonTitle = currentSlide?.buttonType || 'Next'; // Default to 'Next' if buttonType is missing
 
   return (
-    <View className="mx-4 flex-1 justify-between">
+    <View className=" flex-1 justify-between">
       {/* Dynamic Header */}
       <Stack.Screen
         options={{
@@ -60,7 +60,7 @@ export default function Carousel() {
 
       {/* Dynamic Button */}
       {currentSlide?.buttonType && (
-        <Button className="mb-8 mt-2" title={buttonTitle} onPress={handleButtonPress} />
+        <Button className="mb-14 mt-2 mx-4" title={buttonTitle} onPress={handleButtonPress} />
       )}
     </View>
   );

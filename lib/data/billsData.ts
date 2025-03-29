@@ -1,4 +1,4 @@
-export const billsData = [
+export const BillsData = [
   {
     id: 1,
     name: 'Bill 1',

@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import Billz from '~/assets/svgs/billz';
 import Plus from '~/assets/svgs/plus';
 import { useRouter, Stack } from 'expo-router';
-import { billsData } from '~/lib/data/billsData';
+import { BillsData } from '~/lib/data/billsData';
 import CalendarSync from '~/assets/svgs/calendarSync';
+import { HeaderBackButton } from '@react-navigation/elements';
 
 type Bill = {
   id: number;
@@ -19,7 +20,7 @@ type Bill = {
 
 const Bills = () => {
   const router = useRouter();
-  const [bills, setBills] = useState<Bill[]>(billsData);
+  const [bills, setBills] = useState<Bill[]>(BillsData);
 
   const navigateToAddBill = () => {
     router.push('/drawerScreens/bills/addBill');
@@ -32,7 +33,18 @@ const Bills = () => {
 
   return (
     <View className="flex-1 bg-white px-4">
-      <Stack.Screen options={{ headerTitle: 'Bills' }} />
+      <Stack.Screen
+        options={{
+          headerTitle: 'Bills',
+          headerLeft: (props) => (
+            <HeaderBackButton
+              {...props}
+              onPress={() => router.replace('/(drawer)/(tabs)/homeScreen')}
+              style={{ marginLeft: -5 }} // Adjust this value as needed
+            />
+          ),
+        }}
+      />
 
       <FlatList
         className="flex-1"
@@ -52,7 +64,7 @@ const Bills = () => {
             onPress={() => navigateToBillDetails(item.id)} // Navigate to dynamic route
           >
             {/* Vertical Colored Component */}
-            <View className="bg-[#AF52DE] mr-2 h-full w-1 rounded-full" />
+            <View className="mr-2 h-full w-1 rounded-full bg-[#AF52DE]" />
 
             {/* Bill Content */}
             <View className="flex-1 flex-row items-center justify-between">

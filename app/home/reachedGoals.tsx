@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import * as Progress from 'react-native-progress';
 import RightArrow from '~/assets/svgs/rightArrow';
-import { dummyGoals } from '~/lib/data/dummyGoalsData';
+import { DummyGoals } from '~/lib/data/dummyGoalsData';
 
 type Props = {};
 
@@ -11,19 +11,19 @@ const ReachedGoals = (props: Props) => {
   const router = useRouter();
 
   // Filter reached goals
-  const reachedGoals = dummyGoals.filter((goal) => goal.savedAmount >= goal.targetAmount);
+  const reachedGoals = DummyGoals.filter((goal) => goal.savedAmount >= goal.targetAmount);
 
   // Calculate total savings for reached goals
-  const totalSavings = reachedGoals.reduce((total, goal) => total + goal.savedAmount, 0);
+  const TotalSavings = reachedGoals.reduce((total, goal) => total + goal.savedAmount, 0);
 
   // Calculate progress percentage for each goal
-  const calculateProgress = (savedAmount: number, targetAmount: number) => {
+  const CalculateProgress = (savedAmount: number, targetAmount: number) => {
     return savedAmount / targetAmount;
   };
 
   // Render each goal item
-  const renderGoalItem = ({ item }: { item: (typeof dummyGoals)[0] }) => {
-    const progress = calculateProgress(item.savedAmount, item.targetAmount);
+  const renderGoalItem = ({ item }: { item: (typeof DummyGoals)[0] }) => {
+    const progress = CalculateProgress(item.savedAmount, item.targetAmount);
 
     return (
       <TouchableOpacity

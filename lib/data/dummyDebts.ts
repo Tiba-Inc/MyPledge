@@ -1,6 +1,6 @@
 import { DebtData } from '~/app/drawerScreens/debt/addDebt';
 
-export const dummyDebts: DebtData[] = [
+export const DummyDebts: DebtData[] = [
   // Active Debts (5 entries with different progress values)
   {
     id: 1,

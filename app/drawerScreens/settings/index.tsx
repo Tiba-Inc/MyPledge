@@ -8,18 +8,24 @@ import Media from '~/assets/svgs/media';
 import Help from '~/assets/svgs/help';
 import AskHelp from '~/assets/svgs/askHelp';
 import { Stack, useNavigation, useRouter } from 'expo-router';
+import { HeaderBackButton } from '@react-navigation/elements';
 
 type Props = {};
 
 const Settings = (props: Props) => {
-  const navigation = useNavigation(); // Use the useNavigation hook
   const router = useRouter(); // Use the useNavigation hook
   return (
     <View className="mx-4">
       <Stack.Screen
         options={{
           headerShown: true,
-
+          headerLeft: (props) => (
+            <HeaderBackButton
+              {...props}
+              onPress={() => router.replace('/(drawer)/(tabs)/homeScreen')}
+              style={{ marginLeft: -5 }} // Adjust this value as needed
+            />
+          ),
           headerTitle: () => <Text className="text-ct font-normal">Settings</Text>,
           headerStyle: {
             backgroundColor: '#fff', // Customize header background color

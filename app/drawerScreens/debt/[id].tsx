@@ -1,6 +1,6 @@
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { dummyDebts } from '~/lib/data/dummyDebts';
+import { DummyDebts } from '~/lib/data/dummyDebts';
 import { useRouter, Stack } from 'expo-router';
 import Bank from '~/assets/svgs/bank';
 import CalendarSync from '~/assets/svgs/calendarSync';
@@ -15,7 +15,7 @@ import Trash from '~/assets/svgs/trash';
 const DebtDetail = () => {
   const { id } = useLocalSearchParams();
   const router = useRouter();
-  const debt = dummyDebts.find((debt) => debt.id === Number(id));
+  const debt = DummyDebts.find((debt) => debt.id === Number(id));
 
   if (!debt) {
     return (
@@ -57,10 +57,10 @@ const DebtDetail = () => {
   const handleEdit = () => {
     router.push({
       pathname: '/drawerScreens/debt/editDebt',
-      params: { id: debt.id }, // Pass the debt ID to the edit screen
+      params: { id: debt.id },
     });
   };
-
+  
   return (
     <View className="mx-4 flex-1">
       <Stack.Screen

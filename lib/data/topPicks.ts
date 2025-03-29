@@ -1,4 +1,4 @@
-export const topPicks = [
+export const TopPicks = [
   {
     id: 1,
     title: 'Budgeting Basics: \nThe 50/30/20 Rule',

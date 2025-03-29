@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { billsData } from '~/lib/data/billsData';
+import { BillsData } from '~/lib/data/billsData';
 import { useRouter, Stack } from 'expo-router';
 import Detail from '~/assets/svgs/detail';
 import CalendarSync from '~/assets/svgs/calendarSync';
@@ -11,7 +11,7 @@ import Trash from '~/assets/svgs/trash';
 const BillDetails = () => {
   const router = useRouter();
   const { id } = useLocalSearchParams(); // Get dynamic ID from URL params
-  const bill = billsData.find((b) => b.id.toString() === id); // Find the bill
+  const bill = BillsData.find((b) => b.id.toString() === id); // Find the bill
 
   if (!bill) {
     return (
@@ -28,7 +28,7 @@ const BillDetails = () => {
           headerTitle: 'Bill details',
           headerRight: () => (
             <View className=" flex-row items-center gap-6 px-1">
-              <TouchableOpacity onPress={() => router.push('./editBill')}>
+              <TouchableOpacity onPress={() => router.push(`./editBill?id=${id}`)}>
                 <Pencil />
               </TouchableOpacity>
               <TouchableOpacity>

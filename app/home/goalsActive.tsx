@@ -3,14 +3,14 @@ import React from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import * as Progress from 'react-native-progress';
 import RightArrow from '~/assets/svgs/rightArrow';
-import { dummyGoals } from '~/lib/data/dummyGoalsData';
+import { DummyGoals } from '~/lib/data/dummyGoalsData';
 
 type Props = {};
 
 const GoalsActive = (props: Props) => {
   const router = useRouter();
 
-  const activeGoals = dummyGoals.filter((goal) => goal.status === 'active');
+  const activeGoals = DummyGoals.filter((goal) => goal.status === 'active');
 
   const totalSavings = activeGoals.reduce((total, goal) => total + goal.savedAmount, 0);
 
@@ -18,7 +18,7 @@ const GoalsActive = (props: Props) => {
     return savedAmount / targetAmount;
   };
 
-  const renderGoalItem = ({ item }: { item: (typeof dummyGoals)[0] }) => {
+  const renderGoalItem = ({ item }: { item: (typeof DummyGoals)[0] }) => {
     const progress = calculateProgress(item.savedAmount, item.targetAmount);
 
     return (

@@ -3,14 +3,26 @@ import React from 'react';
 import { Button } from '~/components/Button';
 import { router, Stack } from 'expo-router';
 import BriefCase from '~/assets/svgs/briefCase';
+import { HeaderBackButton } from '@react-navigation/elements';
 
 type Props = {};
 
 const Debt = (props: Props) => {
   return (
     <View className="mx-4 flex-1">
-      <Stack.Screen options={{ headerTitle: '' }} />
-      <View className="items-center flex-1 mt-48">
+      <Stack.Screen
+        options={{
+          headerTitle: '',
+          headerLeft: (props) => (
+            <HeaderBackButton
+              {...props}
+              onPress={() => router.replace('/(drawer)/(tabs)/homeScreen')}
+              style={{ marginLeft: -5 }} // Adjust this value as needed
+            />
+          ),
+        }}
+      />
+      <View className="mt-48 flex-1 items-center">
         <View className="items-center">
           <BriefCase />
         </View>

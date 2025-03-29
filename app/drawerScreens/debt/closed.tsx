@@ -4,10 +4,11 @@ import Ledger from '~/assets/svgs/ledger';
 import { Button } from '~/components/Button';
 import { useRouter } from 'expo-router';
 import { DebtData } from '~/app/drawerScreens/debt/addDebt';
-import { dummyDebts } from '~/lib/data/dummyDebts'; // Import dummyDebts
+import { DummyDebts } from '~/lib/data/dummyDebts'; // Import dummyDebts
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Minus from '~/assets/svgs/minus';
 import Plus from '~/assets/svgs/plus';
+import DebtDate from '~/assets/svgs/debtDate';
 import Bank from '~/assets/svgs/bank';
 import CalendarSync from '~/assets/svgs/calendarSync';
 import * as Progress from 'react-native-progress'; // Import Progress.Bar
@@ -18,7 +19,7 @@ const Closed = (props: Props) => {
   const router = useRouter();
 
   // Filter the dummy data to get only closed debts
-  const closedDebts = dummyDebts.filter((debt) => debt.status === 'closed');
+  const closedDebts = DummyDebts.filter((debt) => debt.status === 'closed');
 
   // Define icons and colors for different debt types
   const debtIcons = {
@@ -61,8 +62,8 @@ const Closed = (props: Props) => {
           <Text>{item.name}</Text>
         </View>
         <Text>{item.totalAmount}</Text>
-        <View className="flex-row gap-2">
-          <CalendarSync />
+        <View className="flex-row gap-2 items-center">
+          <DebtDate />
           <Text>{item.dueDate}</Text>
         </View>
         <View className="flex-row items-center gap-4">

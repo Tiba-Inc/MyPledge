@@ -3,7 +3,8 @@ import { Stack, useRouter } from 'expo-router';
 import React from 'react';
 import TopPicks1 from '~/assets/svgs/topPicks1';
 import { FlashList } from '@shopify/flash-list';
-import { topPicks } from '~/lib/data/topPicks';
+import { TopPicks } from '~/lib/data/topPicks';
+import { HeaderBackButton } from '@react-navigation/elements';
 
 type Props = {};
 
@@ -15,17 +16,28 @@ const Articles = (props: Props) => {
 
   return (
     <View className="mx-4 flex-1">
-      <Stack.Screen options={{ headerTitle: 'Articles' }} />
+      <Stack.Screen
+        options={{
+          headerTitle: 'Articles',
+          headerLeft: (props) => (
+            <HeaderBackButton
+              {...props}
+              onPress={() => router.replace('/(drawer)/(tabs)/homeScreen')}
+              style={{ marginLeft: -5 }} // Adjust this value as needed
+            />
+          ),
+        }}
+      />
       <Text className="text-ch mt-3">Top picks for you</Text>
 
       <FlashList
-        data={topPicks} // Use the imported data
+        data={TopPicks} // Use the imported data
         horizontal
         showsHorizontalScrollIndicator={false}
         estimatedItemSize={cardWidth} // Set estimated item size to card width
         renderItem={({ item }) => (
           <View
-          className='mt-3'
+            className="mt-3"
             style={[
               styles.card,
               {
@@ -33,7 +45,7 @@ const Articles = (props: Props) => {
                 marginRight: 16, // Add spacing between items
               },
             ]}>
-            <View style={{ width: '100%', aspectRatio: 1 }}> 
+            <View style={{ width: '100%', aspectRatio: 1 }}>
               {item.svg === 'TopPicks1' && <TopPicks1 width="100%" height="100%" />}
             </View>
             <View style={{ marginTop: 8 }}>

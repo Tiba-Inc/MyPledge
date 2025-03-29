@@ -29,7 +29,7 @@ const DebtTabs = (props: Props) => {
       <View className="flex-1">
         <Stack.Screen
           options={{
-            headerTitle: 'Debt',
+            headerTitle: 'Debts',
             headerShadowVisible: false,
           }}
         />

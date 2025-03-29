@@ -12,7 +12,7 @@ export interface Goal {
     status: 'active' | 'reached'; // Status of the goal
   }
   
-  export const dummyGoals: Goal[] = [
+  export const DummyGoals: Goal[] = [
     // Active Goals (7)
     {
       id: 1,
